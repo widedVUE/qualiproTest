@@ -1,0 +1,24 @@
+// app global css in SCSS form
+body {
+  font-family: 'Inter', 'Roboto', sans-serif;
+  background-color: #f4f7fb;
+  color: #333;
+}
+
+.q-page {
+  background-color: #f4f7fb;
+}
+
+.q-card {
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.q-btn {
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.q-input {
+  border-radius: 8px;
+}
