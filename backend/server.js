@@ -1,45 +1,50 @@
-import express from "express"
-import cors from "cors"
-import dotenv from "dotenv"
-import db from "./models/index.js"
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import db from "./models/index.js";
 
-import authRoutes from "./routes/authRoutes.js"
-import collaborateursRoutes from "./routes/collaborateurRoutes.js"
-import { authMiddleware } from "./middleware/authMiddleware.js"
-import errorHandler from "./middleware/errorHandler.js"
+import authRoutes from "./routes/authRoutes.js";
+import collaborateursRoutes from "./routes/collaborateurRoutes.js";
+import { authMiddleware } from "./middleware/authMiddleware.js";
+import errorHandler from "./middleware/errorHandler.js";
+import { createTestUser } from "./utils/createTestUser.js"; // <-- import
 
-dotenv.config()
+dotenv.config();
 
-const app = express()
-const PORT = process.env.PORT || 5000
+const app = express();
+const PORT = process.env.PORT || 5000;
 
-//  Middlewares globaux
-app.use(cors({ origin: "*" })) 
-app.use(express.json())
+// Middlewares globaux
+app.use(cors({ origin: "*" }));
+app.use(express.json());
 
-// mes  Routes principales 
-app.use("/api", authRoutes)
-app.use("/api/collaborateurs", collaborateursRoutes)
+// Routes principales
+app.use("/api", authRoutes);
+app.use("/api/collaborateurs", collaborateursRoutes);
 
 app.get("/", (req, res) => {
-  res.json({ message: "API en ligne et opérationnelle" })
-})
+  res.json({ message: "API en ligne et opérationnelle" });
+});
 
-//  Middleware global d’erreurs
-app.use(errorHandler)
+// Middleware global d’erreurs
+app.use(errorHandler);
 
-//  Connexion et synchronisation DB
+// Connexion et synchronisation DB
 db.sequelize
   .authenticate()
   .then(() => {
-    console.log(" Connexion à la base de données réussie.")
-    return db.sequelize.sync({ alter: false }) 
+    console.log("Connexion à la base de données réussie.");
+    return db.sequelize.sync({ alter: false });
   })
-  .then(() => {
-    console.log(" Base de données synchronisée.")
-    app.listen(PORT, () => console.log(` Serveur lancé sur le port ${PORT}`))
+  .then(async () => {
+    console.log("Base de données synchronisée.");
+    
+    // <-- Création du compte test ici
+    await createTestUser();
+
+    app.listen(PORT, () => console.log(`Serveur lancé sur le port ${PORT}`));
   })
   .catch((err) => {
-    console.error(" Erreur de connexion à la base :", err.message)
-    process.exit(1)
-  })
+    console.error("Erreur de connexion à la base :", err.message);
+    process.exit(1);
+  });

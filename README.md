@@ -68,19 +68,34 @@ TeamTracker/
 
 ---
 
-
-## ⚙️ Installation & Exécution
-
-### 1️⃣ Cloner le dépôt
-
-```bash
+⚙️ Installation & Exécution
+1️⃣ Cloner le dépôt
 git clone https://github.com/widedVUE/TeamTracker
 cd TeamTracker
 
+2️⃣ Accès et données de test
 
+Pour tester l’application sans créer de compte, vous pouvez utiliser :
+
+Email : benouniswided@gmail.com
+
+Mot de passe : qualipro123
+
+💾 Importer la base de données
+
+Ouvrez phpMyAdmin (XAMPP) ou un client MySQL.
+
+Créez une base vide nommée qualipro_db (ou adaptez le .env).
+
+Importez le fichier SQL fourni (qualipro_db.sql) envoé :
+
+Dans phpMyAdmin, sélectionnez la base, cliquez sur Importer, choisissez le fichier .sql et validez.
+
+✅ Toutes les tables et données seront recréées pour correspondre à l’application.
+
+3️⃣ Configuration du backend
 cd backend
 npm install
-
 
 
 Créer un fichier .env à la racine du backend :
@@ -100,25 +115,22 @@ Lancer le serveur :
 npm start
 
 
-🟢 L’API est accessible sur : http://localhost:5000
+L’API sera accessible sur : http://localhost:5000
 
-3️⃣ Configuration du Frontend
+4️⃣ Configuration du frontend
 cd ../frontend
 npm install
-
-
-Lancer le serveur Quasar :
-
 npm run dev
 
 
-🟣 L’application sera disponible sur : http://localhost:9000
+L’application sera disponible sur : http://localhost:9000
+
 
 🧪 API REST Endpoints
 Méthode	Endpoint	Description
-GET	/api/collaborateurs	Récupère tous les collaborateurs
+GET	    /api/collaborateurs	Récupère tous les collaborateurs
 POST	/api/collaborateurs	Ajoute un nouveau collaborateur
-PUT	/api/collaborateurs/:id	Met à jour un collaborateur
+PUT	    /api/collaborateurs/:id	Met à jour un collaborateur
 DELETE	/api/collaborateurs/:id	Supprime un collaborateur
 🧠 Fonctionnalités principales
 
@@ -140,7 +152,6 @@ DELETE	/api/collaborateurs/:id	Supprime un collaborateur
 
 Voici un aperçu visuel de l’application **TeamTracker** 👇
 
-<<<<<<< HEAD
 ### 🎨 Tableau de bord
 ![Dashboard](screenshots/dashboard-overview.png)
 
@@ -155,22 +166,6 @@ Voici un aperçu visuel de l’application **TeamTracker** 👇
 
 ### 🔐 Page de connexion
 ![Login page](screenshots/login-page.png)
-=======
-### 🏠 Tableau de bord
-![Dashboard](./screenshots/dashboard-overview.png)
-
-### 👥 Liste des collaborateurs
-![Liste des collaborateurs](./screenshots/collaborator-list.png)
-
-### ➕ Formulaire d’ajout collaborateur
-![Formulaire collaborateur](./screenshots/add-collaborator-form.png)
-
-### 🧾 Page d’inscription
-![Register page](./screenshots/register-page.png)
-
-### 🔐 Page de connexion
-![Login page](./screenshots/login-page.png)
->>>>>>> 4765e8f (first commit)
 
 
 🧰 Scripts utiles
